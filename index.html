@@ -6,165 +6,263 @@
 <title>Phạm Minh Kiên · Giáo viên Sinh học</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --green-900:#0c2e20; --green-800:#123f2c; --green-700:#1a5a3e; --green-500:#2e8b57;
-    --leaf:#7cc29a; --cream:#f7f3ea; --paper:#fffdf8; --ink:#1d2621; --muted:#5d6b63;
-    --gold:#d9a93a; --line:#e3ddcf;
+    --g950:#071f15; --g900:#0b2a1d; --g800:#103a28; --g700:#175237; --g600:#1f6a47; --g500:#2e8b57;
+    --leaf:#8fd0aa; --mint:#e4f2ea; --cream:#f6f2e9; --paper:#fffdf8; --ink:#18221d; --muted:#5a6a61;
+    --gold:#d4a73c; --gold2:#f0d58b; --line:#e4ddcd;
+    --serif:"Playfair Display",Georgia,serif; --sans:"Be Vietnam Pro",system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
+  body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased}
   img{display:block;max-width:100%}
   a{color:inherit}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-  h1,h2,h3{font-family:"Lora",Georgia,serif;line-height:1.2}
-  .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--green-500)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  h1,h2,h3,h4{font-family:var(--serif);line-height:1.18;font-weight:600}
+  p.j{text-align:justify;text-justify:inter-word}
 
-  /* NAV */
-  nav{position:sticky;top:0;z-index:20;background:rgba(12,46,32,.92);backdrop-filter:blur(8px);color:#fff}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  nav .brand{font-family:"Lora",serif;font-weight:700;font-size:1.05rem;text-decoration:none}
-  nav .brand span{color:var(--gold)}
-  nav ul{display:flex;gap:26px;list-style:none;font-size:.9rem}
-  nav ul a{text-decoration:none;opacity:.85}
-  nav ul a:hover{opacity:1;color:var(--gold)}
+  .kicker{display:inline-flex;align-items:center;gap:12px;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--g600)}
+  .kicker::before{content:"";width:34px;height:1.5px;background:currentColor}
+  .sec-title{font-size:clamp(2rem,4vw,3rem);margin-top:14px}
+  .sec-title em{font-style:italic;color:var(--g600);font-weight:500}
+  .sec-lead{color:var(--muted);margin-top:14px;max-width:640px;font-size:1.04rem}
 
-  /* HERO */
-  .hero{background:radial-gradient(1200px 500px at 85% 10%,#1f6b49 0%,transparent 60%),var(--green-900);color:#fff;overflow:hidden}
-  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:80px}
-  .hero .eyebrow{color:var(--leaf)}
-  .hero h1{font-size:clamp(2.4rem,5vw,3.8rem);margin:14px 0 18px}
-  .hero h1 em{font-style:italic;color:var(--gold);font-weight:500}
-  .hero p.lead{font-size:1.1rem;color:#d5e6dc;max-width:540px}
-  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-  .tags span{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;font-size:.85rem;color:#e7f1eb}
-  .cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
-  .btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:600;text-decoration:none;font-size:.95rem}
-  .btn.gold{background:var(--gold);color:var(--green-900)}
-  .btn.ghost{border:1px solid rgba(255,255,255,.4);color:#fff}
-  .portrait{position:relative;justify-self:center;width:min(100%,420px)}
-  .portrait::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--gold);border-radius:28px}
-  .portrait img{position:relative;border-radius:28px;aspect-ratio:1;object-fit:cover;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+  /* ---------- NAV ---------- */
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .35s,box-shadow .35s}
+  nav.solid{background:rgba(7,31,21,.9);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(0,0,0,.18)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+  .mono{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:.95rem;color:var(--gold2)}
+  .brand b{font-family:var(--serif);font-weight:600;font-size:1.08rem;letter-spacing:.01em}
+  nav ul{display:flex;gap:6px;list-style:none}
+  nav ul a{display:block;padding:8px 14px;border-radius:999px;text-decoration:none;color:#d7e8de;font-size:.9rem;transition:.25s}
+  nav ul a:hover{color:#fff;background:rgba(255,255,255,.08)}
+  nav ul a.active{color:var(--g950);background:var(--gold2)}
 
-  /* STATS */
-  .stats{background:var(--paper);border-bottom:1px solid var(--line)}
-  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
-  .stat{padding:28px 20px;border-right:1px solid var(--line)}
-  .stat:last-child{border-right:0}
-  .stat b{display:block;font-family:"Lora",serif;font-size:1.9rem;color:var(--green-700)}
-  .stat small{color:var(--muted);font-size:.88rem}
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden;
+    background:radial-gradient(900px 600px at 78% 30%,#1f6a47 0%,transparent 62%),radial-gradient(700px 500px at 10% 100%,#123f2b 0%,transparent 70%),var(--g950)}
+  .hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
+  .hero .grain{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);pointer-events:none}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:64px;align-items:center;padding-top:110px;padding-bottom:90px;width:100%}
+  .hero .kicker{color:var(--leaf)}
+  .hero h1{font-size:clamp(2.6rem,5.4vw,4.5rem);font-weight:600;margin:20px 0 6px;letter-spacing:-.01em}
+  .hero .role{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2vw,1.5rem);color:var(--gold2)}
+  .hero .lead{margin-top:24px;font-size:1.08rem;color:#cfe2d7;max-width:560px;font-weight:300}
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .facts span{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);border-radius:999px;padding:8px 16px;font-size:.86rem;color:#e6f1ea}
+  .facts span i{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  .cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.94rem;transition:transform .25s,box-shadow .25s,background .25s}
+  .btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:var(--g950);box-shadow:0 10px 30px rgba(212,167,60,.3)}
+  .btn.gold:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(212,167,60,.4)}
+  .btn.ghost{border:1px solid rgba(255,255,255,.35);color:#fff}
+  .btn.ghost:hover{background:rgba(255,255,255,.08)}
 
-  section.block{padding:88px 0}
-  .head{max-width:640px;margin-bottom:44px}
-  .head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);margin-top:8px}
-  .head p{color:var(--muted);margin-top:12px}
+  .frame{position:relative;justify-self:center;width:min(100%,430px)}
+  .frame .ring{position:absolute;inset:-26px;border-radius:50%;border:1px dashed rgba(240,213,139,.45);animation:spin 60s linear infinite}
+  .frame .ring::before{content:"";position:absolute;top:8%;left:12%;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+  .frame .photo{position:relative;border-radius:50%;overflow:hidden;aspect-ratio:1;border:6px solid rgba(255,255,255,.08);box-shadow:0 40px 80px rgba(0,0,0,.45)}
+  .frame .photo img{width:100%;height:100%;object-fit:cover}
+  .badge{position:absolute;display:flex;align-items:center;gap:12px;background:rgba(255,253,248,.96);color:var(--ink);border-radius:16px;padding:12px 16px;box-shadow:0 16px 36px rgba(0,0,0,.3);animation:float 6s ease-in-out infinite}
+  .badge svg{flex:none}
+  .badge b{display:block;font-family:var(--serif);font-size:1rem;line-height:1.2}
+  .badge small{display:block;font-size:.74rem;color:var(--muted);line-height:1.3}
+  .badge.b1{left:-34px;bottom:12%}
+  .badge.b2{right:-26px;top:6%;animation-delay:-3s}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes float{50%{transform:translateY(-10px)}}
+  .scroll-hint{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);width:26px;height:42px;border:1.5px solid rgba(255,255,255,.4);border-radius:14px}
+  .scroll-hint::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--gold2);animation:wheel 1.8s ease-in-out infinite}
+  @keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
 
-  /* BOOK SLIDESHOW */
-  #sach{background:var(--paper)}
-  .books{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  .stage{position:relative;height:560px;border-radius:24px;overflow:hidden;background:var(--green-800);box-shadow:0 24px 50px rgba(18,63,44,.25)}
-  .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
-  .slide.on{opacity:1}
-  .slide .bg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(22px) brightness(.55);transform:scale(1.1)}
-  .slide img{position:absolute;inset:0;margin:auto;max-width:82%;max-height:86%;object-fit:contain;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
-  .slide.on img{animation:rise 5s ease-out both}
-  @keyframes rise{from{transform:scale(.96)}to{transform:scale(1)}}
-  .arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.88);color:var(--green-900);font-size:1.3rem;cursor:pointer;z-index:3}
-  .arrow:hover{background:#fff}
-  .arrow.prev{left:14px}.arrow.next{right:14px}
-  .progress{position:absolute;left:0;bottom:0;height:4px;background:var(--gold);width:0;z-index:3}
-  .counter{position:absolute;top:14px;right:16px;z-index:3;background:rgba(0,0,0,.45);color:#fff;font-size:.8rem;padding:4px 10px;border-radius:999px}
-  .info .role{display:inline-block;background:#e6f2ea;color:var(--green-700);font-weight:600;font-size:.8rem;padding:5px 12px;border-radius:999px}
-  .info h3{font-size:clamp(1.6rem,3vw,2.2rem);margin:16px 0 10px}
-  .info .meta{color:var(--muted);font-size:.95rem}
-  .info .desc{margin-top:16px;font-size:1.02rem}
-  .fade{transition:opacity .45s ease}
-  .fade.out{opacity:0}
-  .dots{display:flex;gap:8px;margin-top:30px;flex-wrap:wrap}
-  .dots button{width:54px;height:72px;border-radius:8px;border:2px solid transparent;padding:0;cursor:pointer;overflow:hidden;background:var(--line);opacity:.55;transition:.3s}
-  .dots button img{width:100%;height:100%;object-fit:cover}
-  .dots button.on{opacity:1;border-color:var(--gold);transform:translateY(-3px)}
-  .extra{margin-top:28px;padding-top:20px;border-top:1px dashed var(--line);font-size:.92rem;color:var(--muted)}
+  /* ---------- STATS ---------- */
+  .stats{position:relative;z-index:2;margin-top:-56px}
+  .stats .grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper);border-radius:22px;box-shadow:0 24px 60px rgba(11,42,29,.14);overflow:hidden}
+  .stat{padding:30px 26px;position:relative}
+  .stat+.stat::before{content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;background:var(--line)}
+  .stat b{display:block;font-family:var(--serif);font-size:clamp(1.4rem,2.2vw,1.9rem);color:var(--g700);line-height:1.1}
+  .stat small{display:block;margin-top:8px;color:var(--muted);font-size:.88rem;line-height:1.45}
 
-  /* TIMELINE */
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
-  .timeline{list-style:none;border-left:2px solid var(--line);padding-left:26px}
-  .timeline li{position:relative;padding-bottom:26px}
-  .timeline li::before{content:"";position:absolute;left:-33px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:3px solid var(--green-500)}
-  .timeline li.now::before{background:var(--gold);border-color:var(--gold)}
-  .timeline .yr{font-weight:700;color:var(--green-700);font-size:.9rem}
-  .timeline p{margin-top:2px}
-  .timeline p small{color:var(--muted)}
-  h3.col{font-size:1.35rem;margin-bottom:22px}
+  section.block{padding:110px 0}
 
-  /* AWARDS */
-  #thanh-tich{background:var(--green-900);color:#fff}
-  #thanh-tich .eyebrow{color:var(--leaf)}
-  #thanh-tich .head p{color:#b9d3c4}
-  .awards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .award{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px}
-  .award .yr{color:var(--gold);font-weight:700;font-size:.85rem}
-  .award h4{font-family:"Lora",serif;font-size:1.12rem;margin:6px 0 4px}
-  .award p{color:#b9d3c4;font-size:.9rem}
-  .award.hl{background:linear-gradient(135deg,rgba(217,169,58,.22),rgba(217,169,58,.05));border-color:rgba(217,169,58,.5)}
+  /* ---------- ABOUT ---------- */
+  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+  .about .story{font-size:1.06rem}
+  .about .story p+p{margin-top:16px}
+  .about .story strong{color:var(--g700);font-weight:600}
+  .pillars{display:grid;gap:18px}
+  .pillar{display:grid;grid-template-columns:58px 1fr;gap:18px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px;transition:transform .3s,box-shadow .3s,border-color .3s}
+  .pillar:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(11,42,29,.1);border-color:#cfe3d6}
+  .pillar .ic{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(140deg,var(--g700),var(--g500));color:var(--gold2)}
+  .pillar h3{font-size:1.25rem}
+  .pillar p{color:var(--muted);margin-top:6px;font-size:.95rem}
 
-  /* SKILLS */
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chips span{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:.88rem}
-  .skillgroup+.skillgroup{margin-top:24px}
-  .skillgroup h4{font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px}
+  /* ---------- BOOKS ---------- */
+  #sach{background:var(--g950);color:#fff;position:relative;overflow:hidden}
+  #sach::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 420px at 20% 0%,rgba(46,139,87,.35),transparent 70%),radial-gradient(600px 400px at 100% 100%,rgba(212,167,60,.14),transparent 70%)}
+  #sach .wrap{position:relative}
+  #sach .kicker{color:var(--leaf)}
+  #sach .sec-title em{color:var(--gold2)}
+  #sach .sec-lead{color:#b7cfc1}
+  .shelf{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;margin-top:56px}
+  .shelf>*{min-width:0}
+  .stage{position:relative;height:560px;perspective:1400px}
+  .card{position:absolute;left:50%;top:50%;height:470px;transform:translate(-50%,-50%) scale(.6);opacity:0;transition:transform .9s cubic-bezier(.22,.8,.24,1),opacity .9s,filter .9s;cursor:pointer;will-change:transform}
+  .card img{height:100%;width:auto;max-width:none;border-radius:6px;box-shadow:0 30px 60px rgba(0,0,0,.55)}
+  .card.c{transform:translate(-50%,-50%) scale(1);opacity:1;z-index:3;cursor:default}
+  .card.l{transform:translate(-118%,-50%) scale(.74) rotateY(22deg);opacity:.5;z-index:2;filter:saturate(.7)}
+  .card.r{transform:translate(18%,-50%) scale(.74) rotateY(-22deg);opacity:.5;z-index:2;filter:saturate(.7)}
+  .card.c::after{content:"";position:absolute;left:8%;right:8%;bottom:-26px;height:22px;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);z-index:-1}
+  .ctrl{display:flex;align-items:center;gap:16px;margin-top:22px;justify-content:center}
+  .ctrl button.arr{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:1.25rem;cursor:pointer;transition:.25s}
+  .ctrl button.arr:hover{background:var(--gold2);color:var(--g950);border-color:var(--gold2)}
+  .bar{position:relative;width:180px;height:3px;background:rgba(255,255,255,.18);border-radius:3px;overflow:hidden}
+  .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--gold2)}
+  .count{font-family:var(--serif);font-size:1rem;color:#cfe2d7;min-width:52px;text-align:center}
+  .info{transition:opacity .45s,transform .45s}
+  .info.out{opacity:0;transform:translateY(10px)}
+  .info .tag{display:inline-block;border:1px solid var(--gold);color:var(--gold2);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+  .info h3{font-size:clamp(1.7rem,3vw,2.4rem);margin:18px 0 14px}
+  .info .authors{color:#b7cfc1;font-size:.95rem}
+  .info .authors b{color:#fff;font-weight:600}
+  .info .pub{margin-top:6px;color:#8fb3a0;font-size:.88rem}
+  .info p.j{margin-top:18px;color:#e2eee7}
+  .thumbs{display:flex;gap:8px;margin-top:30px;flex-wrap:wrap}
+  .thumbs button{width:46px;height:62px;border-radius:6px;border:2px solid transparent;padding:0;overflow:hidden;cursor:pointer;background:#1a3a2b;opacity:.45;transition:.3s}
+  .thumbs button img{width:100%;height:100%;object-fit:cover}
+  .thumbs button:hover{opacity:.8}
+  .thumbs button.on{opacity:1;border-color:var(--gold2);transform:translateY(-4px)}
+  .also{margin-top:26px;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-size:.92rem;color:#cfe2d7}
+  .also b{color:#fff}
 
-  /* CONTACT */
-  .hero p.lead,.head p,.info .meta,.info .desc,.extra,.timeline p,.award p{text-align:justify;text-justify:inter-word}
-  footer{background:var(--green-900);color:#9bbcaa;text-align:center;font-size:.88rem;padding:26px 20px;line-height:2}
-  footer a{color:#e7f1eb;text-decoration:none}
-  footer .sep{margin:0 10px;opacity:.5}
+  /* ---------- JOURNEY ---------- */
+  .tabs{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px;margin-top:34px}
+  .tabs button{border:0;background:transparent;font:inherit;font-weight:600;font-size:.92rem;color:var(--muted);padding:10px 22px;border-radius:999px;cursor:pointer;transition:.25s}
+  .tabs button.on{background:var(--g700);color:#fff}
+  .tl{position:relative;margin-top:44px;display:none}
+  .tl.on{display:block}
+  .tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(var(--g500),var(--gold) 60%,transparent)}
+  .ev{position:relative;width:50%;padding:0 46px 34px}
+  .ev:nth-child(odd){margin-left:0;text-align:right}
+  .ev:nth-child(even){margin-left:50%}
+  .ev::before{content:"";position:absolute;top:22px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:4px solid var(--g500);box-shadow:0 0 0 6px rgba(46,139,87,.12)}
+  .ev:nth-child(odd)::before{right:-8px}
+  .ev:nth-child(even)::before{left:-8px}
+  .ev.now::before{border-color:var(--gold);box-shadow:0 0 0 6px rgba(212,167,60,.2)}
+  .ev .box{display:inline-block;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 24px;box-shadow:0 10px 28px rgba(11,42,29,.06);max-width:470px;transition:transform .3s,box-shadow .3s}
+  .ev .box:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(11,42,29,.1)}
+  .ev .yr{display:inline-block;font-family:var(--serif);font-weight:600;color:var(--g700);font-size:1.05rem}
+  .ev.now .yr{color:#a37a1c}
+  .ev h4{font-family:var(--sans);font-size:1rem;font-weight:600;margin-top:4px}
+  .ev p.j{color:var(--muted);font-size:.93rem;margin-top:4px}
 
-  /* Tablet (iPad) */
-  @media (max-width:1100px) and (min-width:861px){
-    .hero .wrap{gap:36px}
-    .books,.two{gap:36px}
-    .stage{height:500px}
+  /* ---------- AWARDS ---------- */
+  #thanh-tich{background:linear-gradient(180deg,var(--paper),var(--cream))}
+  .awards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+  .aw{position:relative;border-radius:20px;padding:28px 26px;background:var(--paper);border:1px solid var(--line);overflow:hidden;transition:transform .3s,box-shadow .3s}
+  .aw:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(11,42,29,.12)}
+  .aw .medal{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin-bottom:18px}
+  .aw.gold .medal{background:linear-gradient(140deg,#f6e2a4,#c99a2e);color:#5a420b}
+  .aw.silver .medal{background:linear-gradient(140deg,#eef1f0,#a9b4af);color:#3d4a44}
+  .aw.green .medal{background:linear-gradient(140deg,var(--g600),var(--g800));color:var(--gold2)}
+  .aw .yr{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);font-weight:600}
+  .aw h4{font-size:1.32rem;margin:6px 0 8px}
+  .aw p.j{color:var(--muted);font-size:.93rem}
+  .aw.feature{grid-column:span 2;background:linear-gradient(130deg,var(--g800),var(--g600));color:#fff;border:0}
+  .aw.feature .yr{color:var(--gold2)}
+  .aw.feature p.j{color:#d4e6db}
+  .aw.feature::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:30px solid rgba(240,213,139,.12)}
+
+  /* ---------- SKILLS ---------- */
+  .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+  .sk{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:28px}
+  .sk h4{font-size:1.2rem;display:flex;align-items:center;gap:10px}
+  .sk h4 span{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+  .lang{margin-top:18px}
+  .lang+.lang{margin-top:16px}
+  .lang .row{display:flex;justify-content:space-between;font-size:.94rem}
+  .lang .row small{color:var(--muted)}
+  .meter{display:flex;gap:5px;margin-top:8px}
+  .meter i{flex:1;height:6px;border-radius:3px;background:var(--line)}
+  .meter i.f{background:linear-gradient(90deg,var(--g500),var(--g700))}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chips span{background:var(--mint);color:var(--g800);border-radius:10px;padding:7px 13px;font-size:.88rem;font-weight:500}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--g950);color:#a9c4b5;padding:56px 0 34px;position:relative;overflow:hidden}
+  footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+  footer .name{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3.4vw,2.6rem);color:#fff}
+  footer .name small{display:block;font-family:var(--sans);font-size:.9rem;color:var(--leaf);margin-top:6px;letter-spacing:.04em}
+  footer .mail{display:inline-flex;align-items:center;gap:10px;color:var(--gold2);text-decoration:none;font-size:1.02rem;border-bottom:1px solid rgba(240,213,139,.35);padding-bottom:4px;word-break:break-all}
+  footer .copy{width:100%;border-top:1px solid rgba(255,255,255,.08);margin-top:34px;padding-top:20px;font-size:.84rem;color:#7f9c8c}
+
+  /* ---------- REVEAL ---------- */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+  .rv.in{opacity:1;transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+  /* ---------- TABLET ---------- */
+  @media (max-width:1100px){
+    .hero .wrap{gap:40px}
+    .shelf{grid-template-columns:1fr;gap:20px}
+    .info{max-width:720px;margin:0 auto;text-align:center}
+    .info p.j{text-align:justify}
+    .thumbs{justify-content:center}
+    .about{grid-template-columns:1fr;gap:40px}
     .awards{grid-template-columns:1fr 1fr}
+    .skills{grid-template-columns:1fr 1fr}
+    .skills .sk:last-child{grid-column:span 2}
   }
-
-  @media (max-width:860px){
-    nav .wrap{gap:16px}
-    nav ul{gap:18px;font-size:.85rem;overflow-x:auto;white-space:nowrap}
-    .hero .wrap,.books,.two{grid-template-columns:1fr}
-    .hero .wrap{padding-top:44px;gap:44px}
-    .portrait{width:min(80%,340px)}
-    .stage{height:460px}
-    .stats .wrap{grid-template-columns:1fr 1fr}
-    .stat:nth-child(2){border-right:0}
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;text-align:left;padding-top:110px}
+    .frame{width:min(78%,360px);margin-top:20px}
+    .badge.b1{left:-18px}.badge.b2{right:-14px}
+    .stats .grid{grid-template-columns:1fr 1fr}
+    .stat:nth-child(3)::before{display:none}
     .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
-    .awards{grid-template-columns:1fr 1fr}
-    section.block{padding:64px 0}
-    .dots button{width:46px;height:62px}
+    .tl::before{left:14px}
+    .ev,.ev:nth-child(even){width:100%;margin-left:0;padding:0 0 26px 46px;text-align:left}
+    .ev:nth-child(odd){text-align:left}
+    .ev::before,.ev:nth-child(odd)::before,.ev:nth-child(even)::before{left:6px;right:auto}
+    .ev .box{max-width:none;display:block}
+    nav ul a{padding:7px 11px;font-size:.84rem}
+    .brand b{display:none}
   }
-  @media (max-width:560px){
+  @media (max-width:640px){
     .wrap{padding:0 18px}
-    nav .brand{display:none}
-    nav ul{width:100%;justify-content:space-between}
-    .awards{grid-template-columns:1fr}
-    .stage{height:400px}
-    .arrow{width:38px;height:38px}
-    .dots{gap:6px}
-    .dots button{width:38px;height:52px}
+    section.block{padding:76px 0}
+    .stage{height:420px}
+    .card{height:340px}
+    .card.l{transform:translate(-102%,-50%) scale(.68) rotateY(22deg)}
+    .card.r{transform:translate(2%,-50%) scale(.68) rotateY(-22deg)}
+    .awards,.skills{grid-template-columns:1fr}
+    .aw.feature,.skills .sk:last-child{grid-column:auto}
+    .badge{padding:9px 12px;border-radius:12px}
+    .badge b{font-size:.88rem}
+    .badge small{font-size:.68rem}
+    .badge svg{width:26px;height:26px}
+    .stat{padding:22px 18px}
+    nav ul{gap:0}
+    nav ul a{padding:6px 9px;font-size:.8rem}
+    .tabs button{padding:9px 16px}
   }
   @media (prefers-reduced-motion:reduce){
-    .slide,.fade{transition:none}.slide.on img{animation:none}html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rv{opacity:1;transform:none}
+    html{scroll-behavior:auto}
   }
 </style>
 </head>
 <body>
 
-<nav>
+<nav id="nav">
   <div class="wrap">
-    <a class="brand" href="#top">Phạm Minh Kiên<span>.</span></a>
+    <a class="brand" href="#top"><span class="mono"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M7 3c0 6 10 6 10 12s-10 3-10 6"/><path d="M17 3c0 6-10 6-10 12s10 3 10 6"/><path d="M8.5 7h7M8.5 17h7"/></svg></span><b>Phạm Minh Kiên</b></a>
     <ul>
+      <li><a href="#gioi-thieu">Giới thiệu</a></li>
       <li><a href="#sach">Sách</a></li>
       <li><a href="#hanh-trinh">Hành trình</a></li>
       <li><a href="#thanh-tich">Thành tích</a></li>
@@ -173,61 +271,105 @@
 </nav>
 
 <header class="hero" id="top">
+  <canvas id="helix" aria-hidden="true"></canvas>
+  <div class="grain"></div>
   <div class="wrap">
     <div>
-      <div class="eyebrow">Giáo viên Sinh học · Tác giả sách</div>
-      <h1>Phạm Minh Kiên</h1>
-      <p class="lead">Đứng lớp Sinh học từ năm 2016 cho mọi đối tượng: luyện thi, đội tuyển, du học. Đồng tác giả nhiều đầu sách tham khảo của Nhà xuất bản Giáo dục Việt Nam, bộ Kết nối tri thức với cuộc sống.</p>
-      <div class="tags">
-        <span>Luyện thi THPT &amp; ĐGNL</span>
-        <span>Bồi dưỡng HSG</span>
-        <span>Từng là thành viên đội tuyển HSG Quốc gia</span>
+      <div class="kicker rv">Sinh học · Giảng dạy · Biên soạn sách</div>
+      <h1 class="rv d1">Phạm Minh Kiên</h1>
+      <div class="role rv d2">Giáo viên Sinh học và tác giả sách tham khảo</div>
+      <p class="lead j rv d3">Giảng dạy Sinh học từ năm 2016. Đồng tác giả bảy đầu sách của Nhà xuất bản Giáo dục Việt Nam và tham gia thiết kế hình ảnh minh họa cho sách giáo khoa Sinh học 12, bộ Kết nối tri thức với cuộc sống.</p>
+      <div class="facts rv d3">
+        <span><i></i>Cựu học sinh chuyên Sinh</span>
+        <span><i></i>Thành viên đội tuyển học sinh giỏi Quốc gia</span>
+        <span><i></i>Cử nhân Công nghệ thông tin</span>
       </div>
-      <div class="cta">
-        <a class="btn gold" href="#sach">Sách đã biên soạn</a>
+      <div class="cta rv d3">
+        <a class="btn gold" href="#sach">Sách đã biên soạn <span aria-hidden="true">→</span></a>
         <a class="btn ghost" href="#hanh-trinh">Hành trình</a>
       </div>
     </div>
-    <div class="portrait">
-      <img src="img/portrait.jpg" alt="Chân dung Phạm Minh Kiên">
+    <div class="frame rv d2">
+      <div class="ring"></div>
+      <div class="photo"><img src="img/portrait.jpg" alt="Chân dung Phạm Minh Kiên"></div>
+      <div class="badge b2">
+        <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#175237"/><path d="M11 9h10v4a5 5 0 0 1-10 0z" fill="#f0d58b"/><path d="M13 19h6v3h2v2H11v-2h2z" fill="#f0d58b"/></svg>
+        <div><b>Giải Nhì</b><small>Olympic Sinh học sinh viên 2025</small></div>
+      </div>
+      <div class="badge b1">
+        <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#d4a73c"/><path d="M9 10h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H9zM23 10h-3a2 2 0 0 0-2 2" fill="none" stroke="#071f15" stroke-width="1.8" stroke-linejoin="round"/><path d="M23 10v11h-5" fill="none" stroke="#071f15" stroke-width="1.8"/></svg>
+        <div><b>7 đầu sách</b><small>Nhà xuất bản Giáo dục Việt Nam</small></div>
+      </div>
     </div>
   </div>
+  <a class="scroll-hint" href="#gioi-thieu" aria-label="Cuộn xuống"></a>
 </header>
 
 <div class="stats">
   <div class="wrap">
-    <div class="stat"><b>2016</b><small>Bắt đầu giảng dạy Sinh học</small></div>
-    <div class="stat"><b>7</b><small>Đầu sách là tác giả, đồng tác giả</small></div>
-    <div class="stat"><b>Giải KK</b><small>HSG Quốc gia môn Sinh học (2016)</small></div>
-    <div class="stat"><b>Giải Nhì</b><small>Olympic Sinh học sinh viên lần V (2025)</small></div>
+    <div class="grid rv">
+      <div class="stat"><b>2016</b><small>Năm bắt đầu giảng dạy Sinh học</small></div>
+      <div class="stat"><b>7</b><small>Đầu sách là tác giả, đồng tác giả</small></div>
+      <div class="stat"><b>Giải Khuyến khích</b><small>Kỳ thi học sinh giỏi Quốc gia môn Sinh học 2016</small></div>
+      <div class="stat"><b>Giải Nhì</b><small>Kỳ thi Olympic Sinh học sinh viên lần thứ V, 2025</small></div>
+    </div>
   </div>
 </div>
 
+<section class="block" id="gioi-thieu">
+  <div class="wrap about">
+    <div class="rv">
+      <div class="kicker">Giới thiệu</div>
+      <h2 class="sec-title">Sinh học là <em>con đường</em> xuyên suốt</h2>
+      <div class="story" style="margin-top:22px">
+        <p class="j">Khởi đầu từ lớp chuyên Sinh của Trường Trung học phổ thông Chuyên Nguyễn Huệ và đội tuyển học sinh giỏi Quốc gia môn Sinh học, <strong>Phạm Minh Kiên</strong> theo đuổi môn học này qua cả việc học, việc dạy và việc viết.</p>
+        <p class="j">Sau khi tốt nghiệp ngành Công nghệ thông tin và truyền thông tại Trường Đại học Khoa học và Công nghệ Hà Nội, anh tiếp tục gắn bó với Sinh học qua giảng dạy, biên soạn sách tham khảo và thiết kế hình ảnh minh họa cho sách giáo khoa. Hiện anh đang học chính quy ngành Sư phạm Sinh học tại Trường Đại học Sư phạm Hà Nội.</p>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar rv d1">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v11H3z"/><path d="M8 20h8M12 16v4"/><path d="M7 9l3 3 7-5"/></svg></div>
+        <div><h3>Giảng dạy</h3><p class="j">Dạy Sinh học cho nhiều đối tượng học sinh: luyện thi, đội tuyển, du học; trực tiếp tại lớp và trực tuyến.</p></div>
+      </div>
+      <div class="pillar rv d2">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-4a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h5z"/></svg></div>
+        <div><h3>Biên soạn sách</h3><p class="j">Tác giả, đồng tác giả các sách tham khảo Sinh học và Khoa học tự nhiên của Nhà xuất bản Giáo dục Việt Nam.</p></div>
+      </div>
+      <div class="pillar rv d3">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3c0 6 10 6 10 12s-10 3-10 6"/><path d="M17 3c0 6-10 6-10 12s10 3 10 6"/><path d="M8.5 7h7M8.5 17h7"/></svg></div>
+        <div><h3>Sinh học và công nghệ</h3><p class="j">Nền tảng Công nghệ thông tin, từng dẫn dắt dự án khoa học về Tin sinh học; tự thiết kế hình ảnh minh họa khoa học.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="block" id="sach">
   <div class="wrap">
-    <div class="head">
-      <div class="eyebrow">Sách đã viết</div>
-      <h2>Những cuốn sách tham gia biên soạn</h2>
-      <p>Ảnh bìa tự chuyển sau mỗi 5 giây. Bấm vào ảnh nhỏ hoặc mũi tên để xem cuốn khác.</p>
+    <div class="rv">
+      <div class="kicker">Sách đã biên soạn</div>
+      <h2 class="sec-title">Những cuốn sách <em>tham gia biên soạn</em></h2>
+      <p class="sec-lead j">Bìa sách tự chuyển sau mỗi 5 giây. Bấm vào bìa bên cạnh, ảnh nhỏ hoặc mũi tên để xem cuốn khác.</p>
     </div>
-
-    <div class="books">
-      <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Bìa sách">
-        <span class="counter" id="counter">1 / 7</span>
-        <button class="arrow prev" id="prev" aria-label="Sách trước">‹</button>
-        <button class="arrow next" id="next" aria-label="Sách sau">›</button>
-        <div class="progress" id="progress"></div>
-      </div>
-
-      <div class="info">
-        <div class="fade" id="infoBox">
-          <span class="role" id="bRole"></span>
-          <h3 id="bTitle"></h3>
-          <div class="meta" id="bMeta"></div>
-          <p class="desc" id="bDesc"></p>
+    <div class="shelf">
+      <div class="rv d1">
+        <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Bìa sách"></div>
+        <div class="ctrl">
+          <button class="arr" id="prev" aria-label="Sách trước">‹</button>
+          <span class="count" id="count">1 / 7</span>
+          <div class="bar"><i id="bar"></i></div>
+          <button class="arr" id="next" aria-label="Sách sau">›</button>
         </div>
-        <div class="dots" id="dots"></div>
-        <div class="extra">Ngoài ra: tác giả sách <b>Tuyển tập Câu hỏi &amp; Bài tập Sinh học Cơ thể Người và Động vật</b>.</div>
+      </div>
+      <div class="rv d2">
+        <div class="info" id="info">
+          <span class="tag" id="bRole"></span>
+          <h3 id="bTitle"></h3>
+          <div class="authors" id="bAuthors"></div>
+          <div class="pub" id="bPub"></div>
+          <p class="j" id="bDesc"></p>
+        </div>
+        <div class="thumbs" id="thumbs"></div>
+        <div class="also">Ngoài ra: tác giả sách <b>Tuyển tập Câu hỏi và Bài tập Sinh học Cơ thể Người và Động vật</b>.</div>
       </div>
     </div>
   </div>
@@ -235,119 +377,239 @@
 
 <section class="block" id="hanh-trinh">
   <div class="wrap">
-    <div class="head">
-      <div class="eyebrow">Hành trình</div>
-      <h2>Học tập và giảng dạy</h2>
+    <div class="rv" style="text-align:center">
+      <div class="kicker">Hành trình</div>
+      <h2 class="sec-title">Học tập và <em>giảng dạy</em></h2>
+      <div class="tabs" role="tablist">
+        <button class="on" data-t="day" role="tab">Giảng dạy</button>
+        <button data-t="hoc" role="tab">Học vấn</button>
+      </div>
     </div>
-    <div class="two">
-      <div>
-        <h3 class="col">Giảng dạy</h3>
-        <ul class="timeline">
-          <li class="now"><div class="yr">2020 – nay</div><p>Giáo viên Sinh học tại Mapstudy, VuiHoc.vn và Trung tâm BDKT Đức Minh</p></li>
-          <li><div class="yr">2019 – 2020</div><p>Giáo viên Sinh học tại Trung tâm giáo dục trực tuyến Bschool và Trung tâm BDVH Trí Anh</p></li>
-          <li><div class="yr">2018 – 2020</div><p>Coach của hệ thống giáo dục “I am gifted, so are you” <small>(nâng cao năng lực cảm xúc xã hội và phương pháp học tập)</small>; giảng dạy Sinh học tại Trung tâm Đăng Khoa</p></li>
-          <li><div class="yr">2016 – 2021</div><p>Giảng dạy Sinh học cho mọi đối tượng: luyện thi, đội tuyển, du học</p></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="col">Học vấn</h3>
-        <ul class="timeline">
-          <li class="now"><div class="yr">Hiện tại</div><p>Sinh viên chính quy ngành Sư phạm Sinh học, Trường Đại học Sư phạm Hà Nội</p></li>
-          <li><div class="yr">2021</div><p>Chứng chỉ Nghiệp vụ sư phạm Cao đẳng, Đại học</p></li>
-          <li><div class="yr">2018</div><p>Trưởng nhóm dự án khoa học về Tin sinh học (Bioinformatics) tại USTH ICT Lab</p></li>
-          <li><div class="yr">2016 – 2019</div><p>Tốt nghiệp Trường Đại học Khoa học và Công nghệ Hà Nội (Đại học Việt Pháp), ngành Công nghệ thông tin và truyền thông</p></li>
-          <li><div class="yr">2013 – 2016</div><p>Lớp chuyên Sinh, Trường THPT Chuyên Nguyễn Huệ</p></li>
-        </ul>
-      </div>
+
+    <div class="tl on" id="tl-day">
+      <div class="ev now rv"><div class="box"><span class="yr">2020 – nay</span><h4>Giáo viên Sinh học</h4><p class="j">Giảng dạy tại Trung tâm giáo dục trực tuyến Mapstudy, Trung tâm giáo dục trực tuyến VuiHoc.vn và Trung tâm Đức Minh.</p></div></div>
+      <div class="ev rv"><div class="box"><span class="yr">2019 – 2020</span><h4>Giáo viên Sinh học</h4><p class="j">Giảng dạy tại Trung tâm giáo dục trực tuyến Bschool và Trung tâm Trí Anh.</p></div></div>
+      <div class="ev rv"><div class="box"><span class="yr">2018 – 2020</span><h4>Huấn luyện viên kỹ năng và giáo viên Sinh học</h4><p class="j">Huấn luyện viên của hệ thống giáo dục “I am gifted, so are you”, phụ trách nâng cao năng lực cảm xúc xã hội và phương pháp học tập; giảng dạy Sinh học tại Trung tâm Đăng Khoa.</p></div></div>
+      <div class="ev rv"><div class="box"><span class="yr">2016 – 2021</span><h4>Giảng dạy Sinh học</h4><p class="j">Dạy Sinh học cho nhiều đối tượng học sinh: luyện thi, đội tuyển, du học.</p></div></div>
+    </div>
+
+    <div class="tl" id="tl-hoc">
+      <div class="ev now rv"><div class="box"><span class="yr">Hiện tại</span><h4>Trường Đại học Sư phạm Hà Nội</h4><p class="j">Sinh viên chính quy ngành Sư phạm Sinh học.</p></div></div>
+      <div class="ev rv"><div class="box"><span class="yr">2021</span><h4>Chứng chỉ Nghiệp vụ sư phạm</h4><p class="j">Chứng chỉ Nghiệp vụ sư phạm Cao đẳng, Đại học.</p></div></div>
+      <div class="ev rv"><div class="box"><span class="yr">2018</span><h4>Trưởng nhóm dự án Tin sinh học</h4><p class="j">Dẫn dắt dự án khoa học về Tin sinh học tại phòng thí nghiệm Công nghệ thông tin và truyền thông, Trường Đại học Khoa học và Công nghệ Hà Nội.</p></div></div>
+      <div class="ev rv"><div class="box"><span class="yr">2016 – 2019</span><h4>Trường Đại học Khoa học và Công nghệ Hà Nội</h4><p class="j">Tốt nghiệp ngành Công nghệ thông tin và truyền thông. Trường còn được gọi là Trường Đại học Việt Pháp.</p></div></div>
+      <div class="ev rv"><div class="box"><span class="yr">2013 – 2016</span><h4>Trường Trung học phổ thông Chuyên Nguyễn Huệ</h4><p class="j">Học sinh lớp chuyên Sinh học.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="block" id="thanh-tich">
   <div class="wrap">
-    <div class="head">
-      <div class="eyebrow">Thành tích</div>
-      <h2>Từ học sinh chuyên Sinh đến người viết sách</h2>
-      <p>Các giải thưởng cá nhân và đóng góp cho sách giáo khoa, sách tham khảo.</p>
+    <div class="rv">
+      <div class="kicker">Thành tích</div>
+      <h2 class="sec-title">Từ học sinh chuyên Sinh <em>đến người viết sách</em></h2>
     </div>
     <div class="awards">
-      <div class="award hl"><div class="yr">2025</div><h4>Giải Nhì</h4><p>Kỳ thi Olympic Sinh học sinh viên lần thứ V</p></div>
-      <div class="award hl"><div class="yr">2024</div><h4>Giải Ba</h4><p>Kỳ thi Olympic Sinh học sinh viên lần thứ IV</p></div>
-      <div class="award hl"><div class="yr">2016</div><h4>Giải Khuyến khích Quốc gia</h4><p>Kỳ thi học sinh giỏi Quốc gia môn Sinh học</p></div>
-      <div class="award"><div class="yr">Sách giáo khoa</div><h4>Hình ảnh minh họa SGK Sinh học 12</h4><p>Xây dựng và thiết kế hình ảnh minh họa, NXB Giáo dục Việt Nam</p></div>
-      <div class="award"><div class="yr">2015</div><h4>Đội tuyển HSG Quốc gia</h4><p>Thành viên đội tuyển; giải Ba thành phố môn Sinh học</p></div>
-      <div class="award"><div class="yr">2016</div><h4>Giải Ba thành phố</h4><p>Giải toán bằng máy tính cầm tay môn Sinh học</p></div>
-      <div class="award"><div class="yr">2012 &amp; 2014</div><h4>Hai lần giải Nhì thành phố</h4><p>Môn Sinh học</p></div>
-      <div class="award"><div class="yr">2016 – 2023</div><h4>Học trò đỗ đạt</h4><p>Nhiều học sinh đỗ trường chuyên và đạt kết quả cao trong kỳ thi Đại học</p></div>
-      <div class="award"><div class="yr">Kỹ năng</div><h4>Ngoại ngữ &amp; công nghệ</h4><p>Tiếng Anh, tiếng Pháp; PowerPoint, Python, Java, Canva, Illustrator, Premiere, Claude, Gemini</p></div>
+      <div class="aw feature rv">
+        <div class="medal" style="background:linear-gradient(140deg,#f6e2a4,#c99a2e);color:#5a420b"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg></div>
+        <div class="yr">2024 và 2025</div>
+        <h4>Hai năm liền đạt giải Olympic Sinh học sinh viên</h4>
+        <p class="j">Giải Ba kỳ thi Olympic Sinh học sinh viên lần thứ IV (2024) và giải Nhì kỳ thi lần thứ V (2025).</p>
+      </div>
+      <div class="aw gold rv d1">
+        <div class="medal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></div>
+        <div class="yr">2016</div>
+        <h4>Giải Khuyến khích Quốc gia</h4>
+        <p class="j">Kỳ thi học sinh giỏi Quốc gia môn Sinh học.</p>
+      </div>
+      <div class="aw green rv">
+        <div class="medal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+        <div class="yr">Sách giáo khoa</div>
+        <h4>Hình ảnh minh họa Sinh học 12</h4>
+        <p class="j">Xây dựng và thiết kế hình ảnh minh họa cho sách giáo khoa Sinh học 12, Nhà xuất bản Giáo dục Việt Nam.</p>
+      </div>
+      <div class="aw silver rv d1">
+        <div class="medal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+        <div class="yr">2015</div>
+        <h4>Đội tuyển học sinh giỏi Quốc gia</h4>
+        <p class="j">Thành viên đội tuyển học sinh giỏi Quốc gia môn Sinh học; giải Ba thành phố môn Sinh học.</p>
+      </div>
+      <div class="aw silver rv d2">
+        <div class="medal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M16 11v4"/></svg></div>
+        <div class="yr">2016</div>
+        <h4>Giải Ba thành phố</h4>
+        <p class="j">Giải toán bằng máy tính cầm tay môn Sinh học.</p>
+      </div>
+      <div class="aw silver rv">
+        <div class="medal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M9 13l-2 8 5-2 5 2-2-8"/></svg></div>
+        <div class="yr">2012 và 2014</div>
+        <h4>Hai lần giải Nhì thành phố</h4>
+        <p class="j">Kỳ thi học sinh giỏi thành phố môn Sinh học.</p>
+      </div>
+      <div class="aw green rv d1">
+        <div class="medal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></div>
+        <div class="yr">2016 – 2023</div>
+        <h4>Học trò đỗ đạt</h4>
+        <p class="j">Nhiều học sinh đỗ trường chuyên và đạt kết quả cao trong kỳ thi Đại học.</p>
+      </div>
+      <div class="aw green rv d2">
+        <div class="medal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-4a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h5z"/></svg></div>
+        <div class="yr">Biên soạn</div>
+        <h4>Bảy đầu sách tham khảo</h4>
+        <p class="j">Sách Để học tốt, sách Nâng cao và phát triển Sinh học, cùng tuyển tập câu hỏi và bài tập Sinh học.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<footer><a href="mailto:minhkienphambio@gmail.com">minhkienphambio@gmail.com</a><span class="sep">·</span>© Phạm Minh Kiên · Hà Nội</footer>
+<section class="block" id="ky-nang" style="padding-top:0">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">Kỹ năng</div>
+      <h2 class="sec-title">Ngôn ngữ và <em>công cụ</em></h2>
+    </div>
+    <div class="skills">
+      <div class="sk rv">
+        <h4><span></span>Ngoại ngữ</h4>
+        <div class="lang"><div class="row">Tiếng Anh <small>Trung cấp</small></div><div class="meter"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></div>
+        <div class="lang"><div class="row">Tiếng Pháp <small>Sơ trung cấp</small></div><div class="meter"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div></div>
+      </div>
+      <div class="sk rv d1">
+        <h4><span></span>Thiết kế và trình bày</h4>
+        <div class="chips"><span>PowerPoint</span><span>Canva</span><span>Adobe Illustrator</span><span>Adobe Premiere</span></div>
+      </div>
+      <div class="sk rv d2">
+        <h4><span></span>Lập trình và trí tuệ nhân tạo</h4>
+        <div class="chips"><span>Python</span><span>Java</span><span>Claude</span><span>Gemini</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="name">Phạm Minh Kiên<small>Giáo viên Sinh học · Hà Nội</small></div>
+    <a class="mail" href="mailto:minhkienphambio@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>minhkienphambio@gmail.com</a>
+    <div class="copy">© Phạm Minh Kiên</div>
+  </div>
+</footer>
 
 <script>
+/* ---------- Books ---------- */
 const BOOKS = [
   {img:"img/ncpt-sinh-11.jpg", title:"Nâng cao và phát triển Sinh học 11", role:"Đồng tác giả",
-   meta:"Đặng Hùng Dũng – Phạm Minh Kiên – Trần Sỹ Luận – Lê Thị Thuỷ · NXB Giáo dục Việt Nam",
+   authors:["Đặng Hùng Dũng","Phạm Minh Kiên","Trần Sỹ Luận","Lê Thị Thuỷ"],
    desc:"Sách nâng cao dành cho học sinh muốn đi sâu hơn chương trình Sinh học 11, bộ Kết nối tri thức với cuộc sống."},
   {img:"img/ncpt-sinh-12.jpg", title:"Nâng cao và phát triển Sinh học 12", role:"Đồng tác giả",
-   meta:"Lê Trung Dũng – Nguyễn Thị Hồng – Phạm Minh Kiên · NXB Giáo dục Việt Nam",
-   desc:"Sách nâng cao Sinh học 12, bộ Kết nối tri thức với cuộc sống."},
+   authors:["Lê Trung Dũng","Nguyễn Thị Hồng","Phạm Minh Kiên"],
+   desc:"Sách nâng cao dành cho học sinh muốn đi sâu hơn chương trình Sinh học 12, bộ Kết nối tri thức với cuộc sống."},
   {img:"img/dht-sinh-11.jpg", title:"Để học tốt Sinh học 11", role:"Đồng tác giả",
-   meta:"Nguyễn Thị Hà – Phạm Minh Kiên – Trần Sỹ Luận – Nguyễn Thị Quyên · NXB Giáo dục Việt Nam",
-   desc:"Sách bổ trợ đi cùng SGK Sinh học 11, bộ Kết nối tri thức với cuộc sống."},
+   authors:["Nguyễn Thị Hà","Phạm Minh Kiên","Trần Sỹ Luận","Nguyễn Thị Quyên"],
+   desc:"Sách bổ trợ đi cùng sách giáo khoa Sinh học 11, bộ Kết nối tri thức với cuộc sống."},
   {img:"img/dht-sinh-12.jpg", title:"Để học tốt Sinh học 12", role:"Đồng tác giả",
-   meta:"Trần Thị Dung – Đặng Hùng Dũng – Nguyễn Thị Hà – Phạm Minh Kiên · NXB Giáo dục Việt Nam",
-   desc:"Sách bổ trợ đi cùng SGK Sinh học 12, bộ Kết nối tri thức với cuộc sống."},
+   authors:["Trần Thị Dung","Đặng Hùng Dũng","Nguyễn Thị Hà","Phạm Minh Kiên"],
+   desc:"Sách bổ trợ đi cùng sách giáo khoa Sinh học 12, bộ Kết nối tri thức với cuộc sống."},
   {img:"img/dht-khtn-8.jpg", title:"Để học tốt Khoa học tự nhiên 8", role:"Đồng tác giả",
-   meta:"Nguyễn Văn Biên – Nguyễn Thu Hà – Phạm Minh Kiên và các tác giả · NXB Giáo dục Việt Nam",
+   authors:["Nguyễn Văn Biên","Nguyễn Thu Hà","Phạm Minh Kiên","cùng các tác giả"],
    desc:"Sách bổ trợ môn Khoa học tự nhiên 8, bộ Kết nối tri thức với cuộc sống."},
   {img:"img/dht-khtn-9.jpg", title:"Để học tốt Khoa học tự nhiên 9", role:"Đồng tác giả",
-   meta:"Nguyễn Thu Hà – Phạm Minh Kiên – Nguyễn Văn Nguyên và các tác giả · NXB Giáo dục Việt Nam",
+   authors:["Nguyễn Thu Hà","Phạm Minh Kiên","Nguyễn Văn Nguyên","cùng các tác giả"],
    desc:"Sách bổ trợ môn Khoa học tự nhiên 9, bộ Kết nối tri thức với cuộc sống."},
   {img:"img/sgk-sinh-12.jpg", title:"Sách giáo khoa Sinh học 12", role:"Thiết kế hình ảnh minh họa",
-   meta:"Bộ Giáo dục và Đào tạo · NXB Giáo dục Việt Nam",
+   authors:["Bộ Giáo dục và Đào tạo"],
    desc:"Tham gia xây dựng và thiết kế hình ảnh minh họa cho sách giáo khoa Sinh học 12, bộ Kết nối tri thức với cuộc sống."}
 ];
-const INTERVAL = 5000;
-const stage = document.getElementById("stage"), dots = document.getElementById("dots");
-const infoBox = document.getElementById("infoBox"), progress = document.getElementById("progress");
-const counter = document.getElementById("counter");
-const slides = BOOKS.map((b,i)=>{
-  const s = document.createElement("div"); s.className = "slide";
-  s.innerHTML = `<div class="bg" style="background-image:url('${b.img}')"></div><img src="${b.img}" alt="Bìa sách ${b.title}">`;
-  stage.insertBefore(s, progress);
-  const d = document.createElement("button");
-  d.setAttribute("aria-label", b.title);
-  d.innerHTML = `<img src="${b.img}" alt="">`;
-  d.onclick = () => go(i, true);
-  dots.appendChild(d);
-  return s;
+const INTERVAL = 5000, N = BOOKS.length;
+const stage = document.getElementById("stage"), thumbs = document.getElementById("thumbs");
+const info = document.getElementById("info"), bar = document.getElementById("bar"), count = document.getElementById("count");
+const cards = BOOKS.map((b,i)=>{
+  const c = document.createElement("div"); c.className = "card";
+  c.innerHTML = `<img src="${b.img}" alt="Bìa sách ${b.title}">`;
+  c.addEventListener("click",()=>{ if(i!==cur) go(i); });
+  stage.appendChild(c);
+  const t = document.createElement("button"); t.setAttribute("aria-label", b.title);
+  t.innerHTML = `<img src="${b.img}" alt="">`; t.onclick = () => go(i);
+  thumbs.appendChild(t);
+  return c;
 });
 let cur = -1, timer = null;
-function setInfo(b){
+function fill(b){
   document.getElementById("bRole").textContent = b.role;
   document.getElementById("bTitle").textContent = b.title;
-  document.getElementById("bMeta").textContent = b.meta;
+  document.getElementById("bAuthors").innerHTML = b.authors.map(a => a==="Phạm Minh Kiên" ? `<b>${a}</b>` : a).join(" · ");
+  document.getElementById("bPub").textContent = "Nhà xuất bản Giáo dục Việt Nam";
   document.getElementById("bDesc").textContent = b.desc;
 }
-function go(i, manual){
-  i = (i + BOOKS.length) % BOOKS.length;
-  if (cur >= 0){ slides[cur].classList.remove("on"); dots.children[cur].classList.remove("on"); }
-  slides[i].classList.add("on"); dots.children[i].classList.add("on");
-  counter.textContent = `${i+1} / ${BOOKS.length}`;
-  if (cur < 0) setInfo(BOOKS[i]);
-  else { infoBox.classList.add("out"); setTimeout(()=>{ setInfo(BOOKS[i]); infoBox.classList.remove("out"); }, 300); }
+function go(i){
+  i = (i + N) % N;
+  cards.forEach((c,k)=>{
+    const d = (k - i + N) % N;
+    c.className = "card" + (d===0 ? " c" : d===1 ? " r" : d===N-1 ? " l" : "");
+  });
+  [...thumbs.children].forEach((t,k)=>t.classList.toggle("on", k===i));
+  count.textContent = `${i+1} / ${N}`;
+  if (cur < 0) fill(BOOKS[i]);
+  else { info.classList.add("out"); setTimeout(()=>{ fill(BOOKS[i]); info.classList.remove("out"); }, 320); }
   cur = i;
-  progress.style.transition = "none"; progress.style.width = "0";
-  void progress.offsetWidth;
-  progress.style.transition = `width ${INTERVAL}ms linear`; progress.style.width = "100%";
+  bar.style.transition = "none"; bar.style.width = "0"; void bar.offsetWidth;
+  bar.style.transition = `width ${INTERVAL}ms linear`; bar.style.width = "100%";
   clearTimeout(timer); timer = setTimeout(()=>go(cur+1), INTERVAL);
 }
-document.getElementById("prev").onclick = () => go(cur-1, true);
-document.getElementById("next").onclick = () => go(cur+1, true);
+document.getElementById("prev").onclick = () => go(cur-1);
+document.getElementById("next").onclick = () => go(cur+1);
+let sx = null;
+stage.addEventListener("touchstart", e => sx = e.touches[0].clientX, {passive:true});
+stage.addEventListener("touchend", e => { if (sx===null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); sx = null; });
 go(0);
+
+/* ---------- Tabs ---------- */
+document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".tabs button").forEach(x => x.classList.toggle("on", x===b));
+  document.querySelectorAll(".tl").forEach(t => t.classList.toggle("on", t.id === "tl-" + b.dataset.t));
+  document.querySelectorAll("#tl-" + b.dataset.t + " .rv").forEach(e => e.classList.add("in"));
+});
+
+/* ---------- Reveal on scroll ---------- */
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12, rootMargin:"0px 0px -40px 0px"}) : null;
+document.querySelectorAll(".rv").forEach(e => io ? io.observe(e) : e.classList.add("in"));
+
+/* ---------- Nav ---------- */
+const nav = document.getElementById("nav"), links = [...document.querySelectorAll("nav ul a")];
+const secs = links.map(a => document.querySelector(a.getAttribute("href")));
+function onScroll(){
+  nav.classList.toggle("solid", scrollY > 40);
+  let act = -1; secs.forEach((s,k) => { if (s && s.getBoundingClientRect().top < innerHeight * .4) act = k; });
+  links.forEach((a,k) => a.classList.toggle("active", k===act));
+}
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+/* ---------- DNA helix background ---------- */
+(function(){
+  const cv = document.getElementById("helix"), ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let w, h, dpr, t = 0;
+  function size(){ dpr = Math.min(devicePixelRatio || 1, 2); w = cv.clientWidth; h = cv.clientHeight; cv.width = w*dpr; cv.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+  function helix(x0, amp, len, phase, alpha){
+    const steps = 46, dy = len / steps;
+    for (let i = 0; i <= steps; i++){
+      const y = -40 + i*dy, a = i*0.32 + phase;
+      const x1 = x0 + Math.sin(a)*amp, x2 = x0 + Math.sin(a + Math.PI)*amp, z = Math.cos(a);
+      if (i % 2 === 0){ ctx.strokeStyle = `rgba(143,208,170,${alpha*0.35})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y); ctx.stroke(); }
+      ctx.fillStyle = z > 0 ? `rgba(240,213,139,${alpha})` : `rgba(143,208,170,${alpha*0.7})`;
+      ctx.beginPath(); ctx.arc(x1, y, 2.6 + z*1.2, 0, 7); ctx.fill();
+      ctx.fillStyle = z < 0 ? `rgba(240,213,139,${alpha})` : `rgba(143,208,170,${alpha*0.7})`;
+      ctx.beginPath(); ctx.arc(x2, y, 2.6 - z*1.2, 0, 7); ctx.fill();
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const big = w > 900;
+    helix(big ? w*0.06 : w*0.96, big ? 46 : 18, h + 80, t, big ? .55 : .3);
+    if (big) helix(w*0.52, 30, h + 80, t*1.3 + 2, .28);
+    if (!reduce){ t += 0.008; requestAnimationFrame(draw); }
+  }
+  size(); addEventListener("resize", () => { size(); if (reduce) draw(); }); draw();
+})();
 </script>
 </body>
 </html>
