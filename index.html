@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phạm Minh Kiên · Giáo viên Sinh học</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-900:#0c2e20; --green-800:#123f2c; --green-700:#1a5a3e; --green-500:#2e8b57;
+    --leaf:#7cc29a; --cream:#f7f3ea; --paper:#fffdf8; --ink:#1d2621; --muted:#5d6b63;
+    --gold:#d9a93a; --line:#e3ddcf;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Lora",Georgia,serif;line-height:1.2}
+  .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--green-500)}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:20;background:rgba(12,46,32,.92);backdrop-filter:blur(8px);color:#fff}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  nav .brand{font-family:"Lora",serif;font-weight:700;font-size:1.05rem;text-decoration:none}
+  nav .brand span{color:var(--gold)}
+  nav ul{display:flex;gap:26px;list-style:none;font-size:.9rem}
+  nav ul a{text-decoration:none;opacity:.85}
+  nav ul a:hover{opacity:1;color:var(--gold)}
+
+  /* HERO */
+  .hero{background:radial-gradient(1200px 500px at 85% 10%,#1f6b49 0%,transparent 60%),var(--green-900);color:#fff;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:80px}
+  .hero .eyebrow{color:var(--leaf)}
+  .hero h1{font-size:clamp(2.4rem,5vw,3.8rem);margin:14px 0 18px}
+  .hero h1 em{font-style:italic;color:var(--gold);font-weight:500}
+  .hero p.lead{font-size:1.1rem;color:#d5e6dc;max-width:540px}
+  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .tags span{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;font-size:.85rem;color:#e7f1eb}
+  .cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:600;text-decoration:none;font-size:.95rem}
+  .btn.gold{background:var(--gold);color:var(--green-900)}
+  .btn.ghost{border:1px solid rgba(255,255,255,.4);color:#fff}
+  .portrait{position:relative;justify-self:center;width:min(100%,420px)}
+  .portrait::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--gold);border-radius:28px}
+  .portrait img{position:relative;border-radius:28px;aspect-ratio:1;object-fit:cover;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+
+  /* STATS */
+  .stats{background:var(--paper);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:28px 20px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-family:"Lora",serif;font-size:1.9rem;color:var(--green-700)}
+  .stat small{color:var(--muted);font-size:.88rem}
+
+  section.block{padding:88px 0}
+  .head{max-width:640px;margin-bottom:44px}
+  .head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);margin-top:8px}
+  .head p{color:var(--muted);margin-top:12px}
+
+  /* BOOK SLIDESHOW */
+  #sach{background:var(--paper)}
+  .books{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .stage{position:relative;height:560px;border-radius:24px;overflow:hidden;background:var(--green-800);box-shadow:0 24px 50px rgba(18,63,44,.25)}
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+  .slide.on{opacity:1}
+  .slide .bg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(22px) brightness(.55);transform:scale(1.1)}
+  .slide img{position:absolute;inset:0;margin:auto;max-width:82%;max-height:86%;object-fit:contain;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+  .slide.on img{animation:rise 5s ease-out both}
+  @keyframes rise{from{transform:scale(.96)}to{transform:scale(1)}}
+  .arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.88);color:var(--green-900);font-size:1.3rem;cursor:pointer;z-index:3}
+  .arrow:hover{background:#fff}
+  .arrow.prev{left:14px}.arrow.next{right:14px}
+  .progress{position:absolute;left:0;bottom:0;height:4px;background:var(--gold);width:0;z-index:3}
+  .counter{position:absolute;top:14px;right:16px;z-index:3;background:rgba(0,0,0,.45);color:#fff;font-size:.8rem;padding:4px 10px;border-radius:999px}
+  .info .role{display:inline-block;background:#e6f2ea;color:var(--green-700);font-weight:600;font-size:.8rem;padding:5px 12px;border-radius:999px}
+  .info h3{font-size:clamp(1.6rem,3vw,2.2rem);margin:16px 0 10px}
+  .info .meta{color:var(--muted);font-size:.95rem}
+  .info .desc{margin-top:16px;font-size:1.02rem}
+  .fade{transition:opacity .45s ease}
+  .fade.out{opacity:0}
+  .dots{display:flex;gap:8px;margin-top:30px;flex-wrap:wrap}
+  .dots button{width:54px;height:72px;border-radius:8px;border:2px solid transparent;padding:0;cursor:pointer;overflow:hidden;background:var(--line);opacity:.55;transition:.3s}
+  .dots button img{width:100%;height:100%;object-fit:cover}
+  .dots button.on{opacity:1;border-color:var(--gold);transform:translateY(-3px)}
+  .extra{margin-top:28px;padding-top:20px;border-top:1px dashed var(--line);font-size:.92rem;color:var(--muted)}
+
+  /* TIMELINE */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  .timeline{list-style:none;border-left:2px solid var(--line);padding-left:26px}
+  .timeline li{position:relative;padding-bottom:26px}
+  .timeline li::before{content:"";position:absolute;left:-33px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:3px solid var(--green-500)}
+  .timeline li.now::before{background:var(--gold);border-color:var(--gold)}
+  .timeline .yr{font-weight:700;color:var(--green-700);font-size:.9rem}
+  .timeline p{margin-top:2px}
+  .timeline p small{color:var(--muted)}
+  h3.col{font-size:1.35rem;margin-bottom:22px}
+
+  /* AWARDS */
+  #thanh-tich{background:var(--green-900);color:#fff}
+  #thanh-tich .eyebrow{color:var(--leaf)}
+  #thanh-tich .head p{color:#b9d3c4}
+  .awards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .award{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px}
+  .award .yr{color:var(--gold);font-weight:700;font-size:.85rem}
+  .award h4{font-family:"Lora",serif;font-size:1.12rem;margin:6px 0 4px}
+  .award p{color:#b9d3c4;font-size:.9rem}
+  .award.hl{background:linear-gradient(135deg,rgba(217,169,58,.22),rgba(217,169,58,.05));border-color:rgba(217,169,58,.5)}
+
+  /* SKILLS */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips span{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:.88rem}
+  .skillgroup+.skillgroup{margin-top:24px}
+  .skillgroup h4{font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px}
+
+  /* CONTACT */
+  .hero p.lead,.head p,.info .meta,.info .desc,.extra,.timeline p,.award p{text-align:justify;text-justify:inter-word}
+  footer{background:var(--green-900);color:#9bbcaa;text-align:center;font-size:.88rem;padding:26px 20px;line-height:2}
+  footer a{color:#e7f1eb;text-decoration:none}
+  footer .sep{margin:0 10px;opacity:.5}
+
+  /* Tablet (iPad) */
+  @media (max-width:1100px) and (min-width:861px){
+    .hero .wrap{gap:36px}
+    .books,.two{gap:36px}
+    .stage{height:500px}
+    .awards{grid-template-columns:1fr 1fr}
+  }
+
+  @media (max-width:860px){
+    nav .wrap{gap:16px}
+    nav ul{gap:18px;font-size:.85rem;overflow-x:auto;white-space:nowrap}
+    .hero .wrap,.books,.two{grid-template-columns:1fr}
+    .hero .wrap{padding-top:44px;gap:44px}
+    .portrait{width:min(80%,340px)}
+    .stage{height:460px}
+    .stats .wrap{grid-template-columns:1fr 1fr}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .awards{grid-template-columns:1fr 1fr}
+    section.block{padding:64px 0}
+    .dots button{width:46px;height:62px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 18px}
+    nav .brand{display:none}
+    nav ul{width:100%;justify-content:space-between}
+    .awards{grid-template-columns:1fr}
+    .stage{height:400px}
+    .arrow{width:38px;height:38px}
+    .dots{gap:6px}
+    .dots button{width:38px;height:52px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .slide,.fade{transition:none}.slide.on img{animation:none}html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Phạm Minh Kiên<span>.</span></a>
+    <ul>
+      <li><a href="#sach">Sách</a></li>
+      <li><a href="#hanh-trinh">Hành trình</a></li>
+      <li><a href="#thanh-tich">Thành tích</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Giáo viên Sinh học · Tác giả sách</div>
+      <h1>Phạm Minh Kiên</h1>
+      <p class="lead">Đứng lớp Sinh học từ năm 2016 cho mọi đối tượng: luyện thi, đội tuyển, du học. Đồng tác giả nhiều đầu sách tham khảo của Nhà xuất bản Giáo dục Việt Nam, bộ Kết nối tri thức với cuộc sống.</p>
+      <div class="tags">
+        <span>Luyện thi THPT &amp; ĐGNL</span>
+        <span>Bồi dưỡng HSG</span>
+        <span>Từng là thành viên đội tuyển HSG Quốc gia</span>
+      </div>
+      <div class="cta">
+        <a class="btn gold" href="#sach">Sách đã biên soạn</a>
+        <a class="btn ghost" href="#hanh-trinh">Hành trình</a>
+      </div>
+    </div>
+    <div class="portrait">
+      <img src="img/portrait.jpg" alt="Chân dung Phạm Minh Kiên">
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>2016</b><small>Bắt đầu giảng dạy Sinh học</small></div>
+    <div class="stat"><b>7</b><small>Đầu sách là tác giả, đồng tác giả</small></div>
+    <div class="stat"><b>Giải KK</b><small>HSG Quốc gia môn Sinh học (2016)</small></div>
+    <div class="stat"><b>Giải Nhì</b><small>Olympic Sinh học sinh viên lần V (2025)</small></div>
+  </div>
+</div>
+
+<section class="block" id="sach">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Sách đã viết</div>
+      <h2>Những cuốn sách tham gia biên soạn</h2>
+      <p>Ảnh bìa tự chuyển sau mỗi 5 giây. Bấm vào ảnh nhỏ hoặc mũi tên để xem cuốn khác.</p>
+    </div>
+
+    <div class="books">
+      <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Bìa sách">
+        <span class="counter" id="counter">1 / 7</span>
+        <button class="arrow prev" id="prev" aria-label="Sách trước">‹</button>
+        <button class="arrow next" id="next" aria-label="Sách sau">›</button>
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div class="info">
+        <div class="fade" id="infoBox">
+          <span class="role" id="bRole"></span>
+          <h3 id="bTitle"></h3>
+          <div class="meta" id="bMeta"></div>
+          <p class="desc" id="bDesc"></p>
+        </div>
+        <div class="dots" id="dots"></div>
+        <div class="extra">Ngoài ra: tác giả sách <b>Tuyển tập Câu hỏi &amp; Bài tập Sinh học Cơ thể Người và Động vật</b>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="hanh-trinh">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Hành trình</div>
+      <h2>Học tập và giảng dạy</h2>
+    </div>
+    <div class="two">
+      <div>
+        <h3 class="col">Giảng dạy</h3>
+        <ul class="timeline">
+          <li class="now"><div class="yr">2020 – nay</div><p>Giáo viên Sinh học tại Mapstudy, VuiHoc.vn và Trung tâm BDKT Đức Minh</p></li>
+          <li><div class="yr">2019 – 2020</div><p>Giáo viên Sinh học tại Trung tâm giáo dục trực tuyến Bschool và Trung tâm BDVH Trí Anh</p></li>
+          <li><div class="yr">2018 – 2020</div><p>Coach của hệ thống giáo dục “I am gifted, so are you” <small>(nâng cao năng lực cảm xúc xã hội và phương pháp học tập)</small>; giảng dạy Sinh học tại Trung tâm Đăng Khoa</p></li>
+          <li><div class="yr">2016 – 2021</div><p>Giảng dạy Sinh học cho mọi đối tượng: luyện thi, đội tuyển, du học</p></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="col">Học vấn</h3>
+        <ul class="timeline">
+          <li class="now"><div class="yr">Hiện tại</div><p>Sinh viên chính quy ngành Sư phạm Sinh học, Trường Đại học Sư phạm Hà Nội</p></li>
+          <li><div class="yr">2021</div><p>Chứng chỉ Nghiệp vụ sư phạm Cao đẳng, Đại học</p></li>
+          <li><div class="yr">2018</div><p>Trưởng nhóm dự án khoa học về Tin sinh học (Bioinformatics) tại USTH ICT Lab</p></li>
+          <li><div class="yr">2016 – 2019</div><p>Tốt nghiệp Trường Đại học Khoa học và Công nghệ Hà Nội (Đại học Việt Pháp), ngành Công nghệ thông tin và truyền thông</p></li>
+          <li><div class="yr">2013 – 2016</div><p>Lớp chuyên Sinh, Trường THPT Chuyên Nguyễn Huệ</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="thanh-tich">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Thành tích</div>
+      <h2>Từ học sinh chuyên Sinh đến người viết sách</h2>
+      <p>Các giải thưởng cá nhân và đóng góp cho sách giáo khoa, sách tham khảo.</p>
+    </div>
+    <div class="awards">
+      <div class="award hl"><div class="yr">2025</div><h4>Giải Nhì</h4><p>Kỳ thi Olympic Sinh học sinh viên lần thứ V</p></div>
+      <div class="award hl"><div class="yr">2024</div><h4>Giải Ba</h4><p>Kỳ thi Olympic Sinh học sinh viên lần thứ IV</p></div>
+      <div class="award hl"><div class="yr">2016</div><h4>Giải Khuyến khích Quốc gia</h4><p>Kỳ thi học sinh giỏi Quốc gia môn Sinh học</p></div>
+      <div class="award"><div class="yr">Sách giáo khoa</div><h4>Hình ảnh minh họa SGK Sinh học 12</h4><p>Xây dựng và thiết kế hình ảnh minh họa, NXB Giáo dục Việt Nam</p></div>
+      <div class="award"><div class="yr">2015</div><h4>Đội tuyển HSG Quốc gia</h4><p>Thành viên đội tuyển; giải Ba thành phố môn Sinh học</p></div>
+      <div class="award"><div class="yr">2016</div><h4>Giải Ba thành phố</h4><p>Giải toán bằng máy tính cầm tay môn Sinh học</p></div>
+      <div class="award"><div class="yr">2012 &amp; 2014</div><h4>Hai lần giải Nhì thành phố</h4><p>Môn Sinh học</p></div>
+      <div class="award"><div class="yr">2016 – 2023</div><h4>Học trò đỗ đạt</h4><p>Nhiều học sinh đỗ trường chuyên và đạt kết quả cao trong kỳ thi Đại học</p></div>
+      <div class="award"><div class="yr">Kỹ năng</div><h4>Ngoại ngữ &amp; công nghệ</h4><p>Tiếng Anh, tiếng Pháp; PowerPoint, Python, Java, Canva, Illustrator, Premiere, Claude, Gemini</p></div>
+    </div>
+  </div>
+</section>
+
+<footer><a href="mailto:minhkienphambio@gmail.com">minhkienphambio@gmail.com</a><span class="sep">·</span>© Phạm Minh Kiên · Hà Nội</footer>
+
+<script>
+const BOOKS = [
+  {img:"img/ncpt-sinh-11.jpg", title:"Nâng cao và phát triển Sinh học 11", role:"Đồng tác giả",
+   meta:"Đặng Hùng Dũng – Phạm Minh Kiên – Trần Sỹ Luận – Lê Thị Thuỷ · NXB Giáo dục Việt Nam",
+   desc:"Sách nâng cao dành cho học sinh muốn đi sâu hơn chương trình Sinh học 11, bộ Kết nối tri thức với cuộc sống."},
+  {img:"img/ncpt-sinh-12.jpg", title:"Nâng cao và phát triển Sinh học 12", role:"Đồng tác giả",
+   meta:"Lê Trung Dũng – Nguyễn Thị Hồng – Phạm Minh Kiên · NXB Giáo dục Việt Nam",
+   desc:"Sách nâng cao Sinh học 12, bộ Kết nối tri thức với cuộc sống."},
+  {img:"img/dht-sinh-11.jpg", title:"Để học tốt Sinh học 11", role:"Đồng tác giả",
+   meta:"Nguyễn Thị Hà – Phạm Minh Kiên – Trần Sỹ Luận – Nguyễn Thị Quyên · NXB Giáo dục Việt Nam",
+   desc:"Sách bổ trợ đi cùng SGK Sinh học 11, bộ Kết nối tri thức với cuộc sống."},
+  {img:"img/dht-sinh-12.jpg", title:"Để học tốt Sinh học 12", role:"Đồng tác giả",
+   meta:"Trần Thị Dung – Đặng Hùng Dũng – Nguyễn Thị Hà – Phạm Minh Kiên · NXB Giáo dục Việt Nam",
+   desc:"Sách bổ trợ đi cùng SGK Sinh học 12, bộ Kết nối tri thức với cuộc sống."},
+  {img:"img/dht-khtn-8.jpg", title:"Để học tốt Khoa học tự nhiên 8", role:"Đồng tác giả",
+   meta:"Nguyễn Văn Biên – Nguyễn Thu Hà – Phạm Minh Kiên và các tác giả · NXB Giáo dục Việt Nam",
+   desc:"Sách bổ trợ môn Khoa học tự nhiên 8, bộ Kết nối tri thức với cuộc sống."},
+  {img:"img/dht-khtn-9.jpg", title:"Để học tốt Khoa học tự nhiên 9", role:"Đồng tác giả",
+   meta:"Nguyễn Thu Hà – Phạm Minh Kiên – Nguyễn Văn Nguyên và các tác giả · NXB Giáo dục Việt Nam",
+   desc:"Sách bổ trợ môn Khoa học tự nhiên 9, bộ Kết nối tri thức với cuộc sống."},
+  {img:"img/sgk-sinh-12.jpg", title:"Sách giáo khoa Sinh học 12", role:"Thiết kế hình ảnh minh họa",
+   meta:"Bộ Giáo dục và Đào tạo · NXB Giáo dục Việt Nam",
+   desc:"Tham gia xây dựng và thiết kế hình ảnh minh họa cho sách giáo khoa Sinh học 12, bộ Kết nối tri thức với cuộc sống."}
+];
+const INTERVAL = 5000;
+const stage = document.getElementById("stage"), dots = document.getElementById("dots");
+const infoBox = document.getElementById("infoBox"), progress = document.getElementById("progress");
+const counter = document.getElementById("counter");
+const slides = BOOKS.map((b,i)=>{
+  const s = document.createElement("div"); s.className = "slide";
+  s.innerHTML = `<div class="bg" style="background-image:url('${b.img}')"></div><img src="${b.img}" alt="Bìa sách ${b.title}">`;
+  stage.insertBefore(s, progress);
+  const d = document.createElement("button");
+  d.setAttribute("aria-label", b.title);
+  d.innerHTML = `<img src="${b.img}" alt="">`;
+  d.onclick = () => go(i, true);
+  dots.appendChild(d);
+  return s;
+});
+let cur = -1, timer = null;
+function setInfo(b){
+  document.getElementById("bRole").textContent = b.role;
+  document.getElementById("bTitle").textContent = b.title;
+  document.getElementById("bMeta").textContent = b.meta;
+  document.getElementById("bDesc").textContent = b.desc;
+}
+function go(i, manual){
+  i = (i + BOOKS.length) % BOOKS.length;
+  if (cur >= 0){ slides[cur].classList.remove("on"); dots.children[cur].classList.remove("on"); }
+  slides[i].classList.add("on"); dots.children[i].classList.add("on");
+  counter.textContent = `${i+1} / ${BOOKS.length}`;
+  if (cur < 0) setInfo(BOOKS[i]);
+  else { infoBox.classList.add("out"); setTimeout(()=>{ setInfo(BOOKS[i]); infoBox.classList.remove("out"); }, 300); }
+  cur = i;
+  progress.style.transition = "none"; progress.style.width = "0";
+  void progress.offsetWidth;
+  progress.style.transition = `width ${INTERVAL}ms linear`; progress.style.width = "100%";
+  clearTimeout(timer); timer = setTimeout(()=>go(cur+1), INTERVAL);
+}
+document.getElementById("prev").onclick = () => go(cur-1, true);
+document.getElementById("next").onclick = () => go(cur+1, true);
+go(0);
+</script>
+</body>
+</html>
