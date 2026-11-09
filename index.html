@@ -79,7 +79,7 @@
   @keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
 
   /* ---------- STATS ---------- */
-  .stats{position:relative;z-index:2;margin-top:-56px}
+  .stats{position:relative;z-index:2;margin-top:-56px;padding-bottom:80px}
   .stats .grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper);border-radius:22px;box-shadow:0 24px 60px rgba(11,42,29,.14);overflow:hidden}
   .stat{padding:30px 26px;position:relative}
   .stat+.stat::before{content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;background:var(--line)}
@@ -262,7 +262,6 @@
   <div class="wrap">
     <a class="brand" href="#top"><span class="mono"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M7 3c0 6 10 6 10 12s-10 3-10 6"/><path d="M17 3c0 6-10 6-10 12s10 3 10 6"/><path d="M8.5 7h7M8.5 17h7"/></svg></span><b>Phạm Minh Kiên</b></a>
     <ul>
-      <li><a href="#gioi-thieu">Giới thiệu</a></li>
       <li><a href="#sach">Sách</a></li>
       <li><a href="#hanh-trinh">Hành trình</a></li>
       <li><a href="#thanh-tich">Thành tích</a></li>
@@ -302,7 +301,7 @@
       </div>
     </div>
   </div>
-  <a class="scroll-hint" href="#gioi-thieu" aria-label="Cuộn xuống"></a>
+  <a class="scroll-hint" href="#sach" aria-label="Cuộn xuống"></a>
 </header>
 
 <div class="stats">
@@ -315,33 +314,6 @@
     </div>
   </div>
 </div>
-
-<section class="block" id="gioi-thieu">
-  <div class="wrap about">
-    <div class="rv">
-      <div class="kicker">Giới thiệu</div>
-      <h2 class="sec-title">Sinh học là <em>con đường</em> xuyên suốt</h2>
-      <div class="story" style="margin-top:22px">
-        <p class="j">Khởi đầu từ lớp chuyên Sinh của Trường Trung học phổ thông Chuyên Nguyễn Huệ và đội tuyển học sinh giỏi Quốc gia môn Sinh học, <strong>Phạm Minh Kiên</strong> theo đuổi môn học này qua cả việc học, việc dạy và việc viết.</p>
-        <p class="j">Sau khi tốt nghiệp ngành Công nghệ thông tin và truyền thông tại Trường Đại học Khoa học và Công nghệ Hà Nội, anh tiếp tục gắn bó với Sinh học qua giảng dạy, biên soạn sách tham khảo và thiết kế hình ảnh minh họa cho sách giáo khoa. Hiện anh đang học chính quy ngành Sư phạm Sinh học tại Trường Đại học Sư phạm Hà Nội.</p>
-      </div>
-    </div>
-    <div class="pillars">
-      <div class="pillar rv d1">
-        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v11H3z"/><path d="M8 20h8M12 16v4"/><path d="M7 9l3 3 7-5"/></svg></div>
-        <div><h3>Giảng dạy</h3><p class="j">Dạy Sinh học cho nhiều đối tượng học sinh: luyện thi, đội tuyển, du học; trực tiếp tại lớp và trực tuyến.</p></div>
-      </div>
-      <div class="pillar rv d2">
-        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-4a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h5z"/></svg></div>
-        <div><h3>Biên soạn sách</h3><p class="j">Tác giả, đồng tác giả các sách tham khảo Sinh học và Khoa học tự nhiên của Nhà xuất bản Giáo dục Việt Nam.</p></div>
-      </div>
-      <div class="pillar rv d3">
-        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3c0 6 10 6 10 12s-10 3-10 6"/><path d="M17 3c0 6-10 6-10 12s10 3 10 6"/><path d="M8.5 7h7M8.5 17h7"/></svg></div>
-        <div><h3>Sinh học và công nghệ</h3><p class="j">Nền tảng Công nghệ thông tin, từng dẫn dắt dự án khoa học về Tin sinh học; tự thiết kế hình ảnh minh họa khoa học.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="block" id="sach">
   <div class="wrap">
